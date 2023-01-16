@@ -1,0 +1,74 @@
+
+.header{
+
+    .image-fond{
+        height: 500px;
+        // width: 100%;
+        margin: auto;
+        background-image: url('../img/Rectangle 19.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .nav-menu{
+        width: 90%;
+        height: 100px;
+        background-color: white;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    
+        .logo, .menu-hamburger{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            
+        }
+    
+        .logo{
+    
+            img{
+                width: 200px;
+                height: 100px;
+            }
+        }
+        .menu-hamburger{
+    
+            width: 70%;
+            #fermer-menu{
+                position: absolute;
+            
+            }
+
+            ul{
+
+                li{
+
+                    padding-top: 50%;
+                    text-align: right;
+                }
+                
+            }
+            ul, #fermer-menu{
+                display: none;
+                margin: 0;
+                padding: 0;
+            
+            }
+        }
+    }
+   
+}
+
+   
+    
+
+
+    
+
+
+    
+
+ 
+  
+  

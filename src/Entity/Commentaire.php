@@ -41,7 +41,7 @@ class Commentaire
 
     /**
      * @ORM\ManyToOne(targetEntity=Internaute::class, inversedBy="commentaires")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $internaute;
 

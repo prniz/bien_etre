@@ -1,0 +1,50 @@
+$grid-columns: 12;
+$i: 1;
+
+
+$grid-sizes:(md: 768px, lg: 1024px, xl: 1440px);
+
+.row
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.col{
+    
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+@for $i from 1 through $grid-columns{
+    
+
+    .col-#{$i} {
+    flex: 0 0 ((100% / $grid-columns) * $i);
+    width: 100%/$grid-columns *$i}
+ }
+
+ /*** media query taille apd de la tablette ***/
+
+ @each $key, $value in $grid-sizes
+ {
+    
+    @media screen and (min-width: $value)
+    {
+
+        .col-#{$key}{
+    
+            flex-basis: 0;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+         @for $i from 1 through $grid-columns
+         {
+             .col-#{$key}-#{$i} 
+             {
+                flex: 0 0 ((100% / $grid-columns) * $i);
+                max-width :100%/$grid-columns *$i     
+             }
+         }
+     }
+ }
