@@ -21,11 +21,11 @@ class AppFixtures extends Fixture
 
         // création des catégories de services
 
-        for($i=0; $i<2; $i++){
+        for($i=0; $i<4; $i++){
 
             $categ_services = new CategorieDeServices();
             $categ_services->setNom($faker->word());
-            $categ_services->setDescription($faker->paragraph());
+            $categ_services->setDescription($faker->text(100));
             $categ_services->setEnAvant($faker->boolean());
             $categ_services->setValide($faker->boolean());
         
@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
 
             // création des prestataires
 
-            for($j=0; $j<4; $j++){
+            for($j=0; $j<2; $j++){
 
                 $prestataire = new Prestataire();
                 $prestataire->setNom($faker->name());
@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
 
                 // création des commentaires
 
-                for($k=0; $k<3; $k++){
+                for($k=0; $k<2; $k++){
 
                     $commentaire = new Commentaire();
                     $commentaire->setTitre($faker->word());

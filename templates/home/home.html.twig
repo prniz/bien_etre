@@ -1,3 +1,43 @@
 {% extends "base.html.twig" %}
 
+{% block body %}
+
+
+    <div class="section-A">
+        <div class="main-container">
+            
+             {% set rand_categ = 'Categorie' %}
+     
+            <p>Votre categorie du mois est : {{ rand_categ }}</p>
+        </div>
+    </div>
+
+    <div class="section-B">
+        <div class="main-container">    
+            <p>Nous vous présentons les prestataires du mois ...</p>
+            
+            {% set compt_prestataires = 0 %}
+
+             {% for cle in prestataires %}
+
+                {% if compt_prestataires < 4 %}
+                    <li id="prestataire"><a href="#">{{cle.nom}}</a></li>
+                {% else %}
+                    {% set compt_prestataires = 4 %}
+                {% endif %}
+
+                    {% set compt_prestataires = compt_prestataires + 1 %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {# {{ render(controller('App\\Controller\\RechercheController::recherche')) }} #}
+
+    {% include 'recherche/recherche.html.twig' %}
+
+{% endblock %}
+
+   
+
+
 

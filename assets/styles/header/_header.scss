@@ -1,0 +1,110 @@
+
+header{
+
+    height: 90vh;   
+    width: 100%;
+    background-image: url('/assets/img/Rectangle\ 19.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+   
+    .nav-menu{
+        width: 100%;
+        height: 100px;
+        background-color: white;
+        background-size: cover;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    
+        .contenu-menu{
+            
+            position: absolute;
+            top: 100px;
+            right: 0;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+
+            ul{
+                display: none;
+                background-color: white;
+                opacity: 60%;
+                height: 80vh;
+                width: 150px;
+                 
+            }
+
+     
+            
+            ul li{
+
+                padding: 20px 0 20px 0;
+            }
+        }
+
+        #fermer-menu{
+            display: none;
+
+        }
+    
+        .logo{
+            
+            left: 20px;
+            
+            img{
+               
+                background-image: url('/assets/img/logo_bien-etre.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 100px;
+                height: 80px;
+            }
+        }
+        
+        .clic{
+            position: absolute;
+            top: 35px;
+            right: 70px;
+            
+            i{
+                font-size: 30px;
+            }
+        }
+
+
+    }
+    .categories{
+    
+        margin-top: 30em;
+        height: 120px;
+        // padding-top: 3px;
+        
+        .plus{
+            
+            margin-left: 30px;
+            a{
+                color: white;
+                text-decoration: none;
+            }
+           
+            
+        }
+
+    }
+   
+}
+
+   
+    
+
+
+    
+
+
+    
+
+ 
+  
+  
