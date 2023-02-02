@@ -23,8 +23,13 @@ class RechercheType extends AbstractType
 
             ->add('nomCategorie', EntityType::class, [
                 'class'=>CategorieDeServices::class,
+                
                 // 'multiple' => true,
             
+            ])
+
+            ->add('codepostal', TextType::class, [
+                'attr'=>['placeholder'=>'code postal','class'=>'cp',]
             ])
              ->add('Chercher', SubmitType::class)
         ;

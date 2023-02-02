@@ -1,4 +1,6 @@
-$(document).ready(function(){
+
+$(function(){
+
 
     // Gestion de clic menu hamburger
 
@@ -6,7 +8,7 @@ $(document).ready(function(){
     let fermer_menu = $("#fermer-menu");
     let liste_menu = $('.contenu-menu ul');
 
-    ouvrir_menu.click(function(e){
+    ouvrir_menu.on('click',function(e){
         e.preventDefault();
         ouvrir_menu.css('display','none');
         fermer_menu.css({"display":"block"});
@@ -15,7 +17,7 @@ $(document).ready(function(){
     })
 
     
-    fermer_menu.click(function(e){
+    fermer_menu.on('click',function(e){
 
         e.preventDefault();
         fermer_menu.css('display','none');
@@ -33,10 +35,14 @@ $(document).ready(function(){
     let i = 0;
 
 
-    plus.click(function(e){ 
+    plus.on('click', function(e){ 
 
-        e.preventDefault();
+        e.preventDefault(); 
+        ajaxCategories();
+        
+    })
 
+    function ajaxCategories(){
         $.ajax(
             {
                 url:'/categ',
@@ -66,6 +72,42 @@ $(document).ready(function(){
                 }
             }
         )
+    }
+
+    // Test JQuery UI
+
+    $('.main-container p').draggable();
+    var test = ["hello", "salut", "yambu", "hola", "jambo"];
+
+    
+    $('.cp').autocomplete({
+        source: test
     })
+
+    $.ajax({
+
+        url: 'https://www.odwb.be/api/records/1.0/search/?dataset=code-postaux-belge&q=&rows=-1&sort=column_1&facet=column_1&facet=column_2',
+        method:'GET',
+        dataType: 'json',
+
+        success : function(data){
+       
+            
+            // let codes = data.facet_groups[0].facets;
+
+            for(cle in data.records){
+
+                // recuperation des codes codes postaux via API url ci-dessus
+
+                let cp = data.records[cle].fields.column_1;
+                let commune = data.records[cle].fields.column_2;
+
+                console.log(cp+" - "+commune);
+            }
+
+        }
+
+    })
+
   
 });

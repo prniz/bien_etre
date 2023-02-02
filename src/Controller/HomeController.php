@@ -36,7 +36,8 @@ class HomeController extends AbstractController
             // $categorie = $form->get("categorie")->getData();
             // dd($donnee_encodee);
 
-            $donnee_trouvee = $doctrine->getRepository(Recherche::class)->findByNom($donnee_encodee->getNomPrestataire());
+            $donnee_prestataire = $doctrine->getRepository(Recherche::class)->findPrestataires($donnee_encodee->getNomPrestataire());
+            $donnee_categorie = $doctrine->getRepository(Recherche::class)->findOneByNomCategorie($donnee_encodee->getNomCategorie());
             // $donnee_trouvee = $doctrine->getRepository()
             if($donnee_trouvee != ''){
                 dd($donnee_trouvee);
@@ -63,6 +64,8 @@ class HomeController extends AbstractController
 
         
     }
+
+   
     
     
 }

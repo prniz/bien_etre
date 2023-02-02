@@ -4,12 +4,15 @@
         <div class="form">
 
             <form action="{{ path('home') }}" method="POST">
-                {# {{form_start(form) }} #}
+                {{form_start(form) }}
 
                     {{ form_widget(form.nomPrestataire) }}
-                    {{ form_widget(form.nomCategorie) }}
+                    <label for="categorie">Selectionner votre catégorie</label>
+                    {{ form_widget(form.nomCategorie, {'attr': {'id': 'categorie'} }) }}
 
-                {# {{ form_end(form) }}  #}
+                    <label for="cp">Votre code postal</label>
+                    {{ form_widget(form.codepostal) }}
+                {{ form_end(form) }} 
                 
             </form>
 

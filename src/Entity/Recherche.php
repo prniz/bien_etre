@@ -27,6 +27,10 @@ class Recherche
      */
     private $nomCategorie;
 
+    private $codepostal;
+    private $commune;
+    private $localite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +56,18 @@ class Recherche
     public function setNomCategorie(?string $nomCategorie): self
     {
         $this->nomCategorie = $nomCategorie;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?string
+    {
+        return $this->codepostal;
+    }
+
+    public function setCodePostal(?string $codepostal): self
+    {
+        $this->codepostal = $codepostal;
 
         return $this;
     }

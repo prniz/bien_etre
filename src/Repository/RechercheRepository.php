@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Recherche;
 use App\Entity\Prestataire;
+use App\Entity\CategorieDeServices;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,7 +41,7 @@ class RechercheRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByNom($value): array
+    public function findPrestataires($value): array
     {    
          $qb = $this->getEntityManager()->createQueryBuilder();
  
@@ -52,6 +53,20 @@ class RechercheRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    public function findOneByNomCategorie($value): ?CategorieDeServices
+    {
+        
+            $qb = $this->getEntityManager()->createQueryBuilder();  
+
+            return $qb->select('r')
+            ->from('App\Entity\CategorieDeServices','r')
+            ->andWhere('r.nom LIKE :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
         ;
     }
 
