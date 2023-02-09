@@ -9,9 +9,18 @@
                     {{ form_widget(form.nomPrestataire) }}
                     <label for="categorie">Selectionner votre catégorie</label>
                     {{ form_widget(form.nomCategorie, {'attr': {'id': 'categorie'} }) }}
+                    
 
+                
                     <label for="cp">Votre code postal</label>
                     {{ form_widget(form.codepostal) }}
+                   
+
+                    <label for="cp">Votre commune</label>
+                    {{ form_widget(form.commune) }}
+
+                       <label for="cp">Votre localité</label>
+                    {{ form_widget(form.localite) }}
                 {{ form_end(form) }} 
                 
             </form>

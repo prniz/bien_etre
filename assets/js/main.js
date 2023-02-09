@@ -77,37 +77,54 @@ $(function(){
     // Test JQuery UI
 
     $('.main-container p').draggable();
-    var test = ["hello", "salut", "yambu", "hola", "jambo"];
+    // var test = ["hello", "salut", "yambu", "hola", "jambo"];
 
     
     $('.cp').autocomplete({
-        source: test
-    })
+        source: function(request, response){
+            $.ajax({
+                
+                url: 'https://www.odwb.be/api/records/1.0/search/?dataset=code-postaux-belge&q',
+                method:'GET',
+                dataType: 'json',
 
-    $.ajax({
+                data:{ 
+                   
+                    q: request.term,
+                
+                },
 
-        url: 'https://www.odwb.be/api/records/1.0/search/?dataset=code-postaux-belge&q=&rows=-1&sort=column_1&facet=column_1&facet=column_2',
-        method:'GET',
-        dataType: 'json',
+                success: function(data){
 
-        success : function(data){
-       
-            
-            // let codes = data.facet_groups[0].facets;
+                    let subdata = [];
+                    let obj = {push:function push(element){ [].push.call(this,element)}};;
 
-            for(cle in data.records){
+                    for(cle in data.records){
+                       obj.push({codep: data.records[cle].fields.column_1+" "+data.records[cle].fields.column_2, commune: data.records[cle].fields.column_2});
 
-                // recuperation des codes codes postaux via API url ci-dessus
+                        
+                    }
 
-                let cp = data.records[cle].fields.column_1;
-                let commune = data.records[cle].fields.column_2;
+                    subdata.push(obj);
+                    console.log(subdata);
 
-                console.log(cp+" - "+commune);
-            }
+                    response($.map(subdata[0], function(item){
+                        return {
+                            label: item.codep,
+                            comm: item.commune
+                        }
+                    }));
 
+                },
+              
+            })
+        },
+        select: function(event, ui){
+        
+            $('.commune').val(ui.item.comm);
         }
-
+       
     })
 
-  
-});
+ 
+})

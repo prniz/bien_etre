@@ -31,6 +31,14 @@ class RechercheType extends AbstractType
             ->add('codepostal', TextType::class, [
                 'attr'=>['placeholder'=>'code postal','class'=>'cp',]
             ])
+
+            ->add('commune', TextType::class, [
+                'attr'=>['placeholder'=>'commune','class'=>'commune',]
+            ])
+
+            ->add('localite', TextType::class, [
+                'attr'=>['placeholder'=>'localité','class'=>'localite',]
+            ])
              ->add('Chercher', SubmitType::class)
         ;
     }

@@ -71,4 +71,29 @@ class Recherche
 
         return $this;
     }
+
+    public function getCommune(): ?string
+    {
+        return $this->commune;
+    }
+
+    public function setCommune(?string $commune): self
+    {
+        $this->commune = $commune;
+
+        return $this;
+    }
+
+    public function getLocalite(): ?string
+    {
+        return $this->localite;
+    }
+
+    public function setLocalite(?string $localite): self
+    {
+        $this->localite = $localite;
+
+        return $this;
+    }
+
 }
