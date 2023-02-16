@@ -1,0 +1,12 @@
+.utilisateur{
+
+    width: 100%;
+    margin:auto;
+    display: flex;
+
+
+    .bloc_prestataire, .bloc_interanaute{
+        flex-direction: row;
+        
+    }
+}

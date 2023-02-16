@@ -97,10 +97,56 @@ $(function(){
                 success: function(data){
 
                     let subdata = [];
-                    let obj = {push:function push(element){ [].push.call(this,element)}};;
+                    let result = "";
+                    let obj = {push:function push(element){ [].push.call(this,element)}};
 
                     for(cle in data.records){
-                       obj.push({codep: data.records[cle].fields.column_1+" "+data.records[cle].fields.column_2, commune: data.records[cle].fields.column_2});
+
+                        switch(true){
+                            case parseInt(data.records[cle].fields.column_1) >= 1000 && parseInt(data.records[cle].fields.column_1) < 1300:
+                                result = "Bruxelles";
+                                break;
+                            case parseInt(data.records[cle].fields.column_1) >= 1300 && parseInt(data.records[cle].fields.column_1) < 1500:
+                                result = "Brabant wallon";
+                                break;
+                            case parseInt(data.records[cle].fields.column_1) >= 1500 && parseInt(data.records[cle].fields.column_1) < 2000:
+                                result = "Brabant flamand";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 2000 && parseInt(data.records[cle].fields.column_1) < 3000:
+                                result = "Anvers";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 3000 && parseInt(data.records[cle].fields.column_1) < 3500:
+                                result = "Brabant flamand";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 3500 && parseInt(data.records[cle].fields.column_1) < 4000:
+                                result = "Limbourg";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 4000 && parseInt(data.records[cle].fields.column_1) < 5000:
+                                result = "Liège";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 5000 && parseInt(data.records[cle].fields.column_1) <= 5680:
+                                result = "Namur";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 6000 && parseInt(data.records[cle].fields.column_1) < 6600:
+                                result = "Hainaut";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 6600 && parseInt(data.records[cle].fields.column_1) < 7000:
+                                result = "Luxembourg";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 7000 && parseInt(data.records[cle].fields.column_1) < 8000:
+                                result = "Hainaut";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 8000 && parseInt(data.records[cle].fields.column_1) < 9000:
+                                result = "Flandre occidentale";
+                            break;
+                            case parseInt(data.records[cle].fields.column_1) >= 9000 && parseInt(data.records[cle].fields.column_1) < 10000:
+                                result = "Flandre orientale";
+                            break;
+                            default:
+                                result = "c'est à côté de la Belgique";
+                            break;
+                        }
+                       obj.push({codep: data.records[cle].fields.column_1+" "+data.records[cle].fields.column_2, commune: data.records[cle].fields.column_2, province: result});
 
                         
                     }
@@ -111,7 +157,8 @@ $(function(){
                     response($.map(subdata[0], function(item){
                         return {
                             label: item.codep,
-                            comm: item.commune
+                            comm: item.commune,
+                            prov: item.province
                         }
                     }));
 
@@ -120,8 +167,10 @@ $(function(){
             })
         },
         select: function(event, ui){
-        
+            
             $('.commune').val(ui.item.comm);
+            $('.localite').val(ui.item.prov);
+            
         }
        
     })
