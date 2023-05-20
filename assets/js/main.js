@@ -1,4 +1,3 @@
-
 $(function(){
 
 
@@ -6,29 +5,33 @@ $(function(){
 
     let ouvrir_menu = $("#ouvrir-menu");
     let fermer_menu = $("#fermer-menu");
-    let liste_menu = $('.contenu-menu ul');
+    let menu = $('#contenu-menu');
+   
 
     ouvrir_menu.on('click',function(e){
         e.preventDefault();
-        ouvrir_menu.css('display','none');
-        fermer_menu.css({"display":"block"});
-        liste_menu.css({"display": "flex", "flex-direction":"column", "justify-content":"center"});
+
+        menu.toggleClass('open');
+        let isOpen = menu.hasClass('open');
         
+        if(isOpen){
+
+            menu.css('display', 'block');
+            
+        }else{
+            menu.css('display', 'none');
+           
+        }
+    
     })
 
-    
-    fermer_menu.on('click',function(e){
 
-        e.preventDefault();
-        fermer_menu.css('display','none');
-        liste_menu.css('display','none'); 
-        ouvrir_menu.css('display','block');
-    });
 
     // Appel de plus de categories au clic sur "plus"
 
 
-    let plus = $("#plus-de-categories");
+    let plus = $("#plusCategories");
+    console.log(plus);
     let liste = $('.liste-categories');
     let categ_avant_clic = $("#cat a").length;
 
@@ -38,19 +41,19 @@ $(function(){
     plus.on('click', function(e){ 
 
         e.preventDefault(); 
-        ajaxCategories();
-        
-    })
+        let val = $(this).html();
 
-    function ajaxCategories(){
+        console.log(val);
+
         $.ajax(
             {
-                url:'/categ',
-                method:'GET',
+                url:'/categorie/'+$(this).html(),
+                method:'GET',  
                 dataType:'json',
-
+            
                 success: function(data){
 
+                    console.log(data);
                     liste.empty();
 
                     if(i==data.length){
@@ -72,7 +75,11 @@ $(function(){
                 }
             }
         )
-    }
+        
+        
+    })
+
+   
 
     // Test JQuery UI
 
@@ -146,7 +153,7 @@ $(function(){
                                 result = "c'est à côté de la Belgique";
                             break;
                         }
-                       obj.push({codep: data.records[cle].fields.column_1+" "+data.records[cle].fields.column_2, commune: data.records[cle].fields.column_2, province: result});
+                       obj.push({codep_commune: data.records[cle].fields.column_1+" "+data.records[cle].fields.column_2, codep: data.records[cle].fields.column_1, commune: data.records[cle].fields.column_2, province: result});
 
                         
                     }
@@ -156,9 +163,10 @@ $(function(){
 
                     response($.map(subdata[0], function(item){
                         return {
-                            label: item.codep,
+                            label: item.codep_commune,
                             comm: item.commune,
-                            prov: item.province
+                            prov: item.province,
+                            value: item.codep,
                         }
                     }));
 
@@ -168,6 +176,7 @@ $(function(){
         },
         select: function(event, ui){
             
+            $('.cp').val(ui.item.value);
             $('.commune').val(ui.item.comm);
             $('.localite').val(ui.item.prov);
             
@@ -175,5 +184,39 @@ $(function(){
        
     })
 
- 
+    let adresse = $('#adresse').html();
+   
+    let latitude = "";
+    let longitude = "";
+    
+
+    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+adresse, function(data){
+
+        // Si l'adresse du prestataire est valide, afficher la carte et le localiser
+
+      
+            latitude = data[0].lat;
+            longitude = data[0].lon;
+
+            const map = L.map('maCarte').setView([latitude, longitude], 13);
+            const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+            const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+        
+            L.tileLayer(tileUrl, { maxZoom: 18, attribution }).addTo(map);
+    
+            L.marker([latitude, longitude]).addTo(map);
+   
+    
+    });
+
+    // Auto completion sur le select des catégories
+   
+    $('.select-categorie').select2({
+        width: '100%'
+    });
+   
+   
 })
+
+
+

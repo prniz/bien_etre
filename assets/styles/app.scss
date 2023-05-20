@@ -1,7 +1,12 @@
 @import "grid.scss";
-@import "layout/layout.scss";
-@import "variables/variables";
 @import "base/base";
+@import "layout/layout.scss";
 @import "header/header";
-@import "modules/home_module_A";
-@import "page_connexion/connexion";
+@import "footer/footer.scss";
+@import "modules/home/home";
+@import "modules/prestataire/prestataire.scss";
+@import "modules/connexion/type_utilisateur.scss";
+@import "modules/Formulaires/form_preinscription.scss";
+@import "modules/Formulaires/form_inscription.scss";
+@import "modules/Formulaires/form_connexion.scss";
+@import "modules/Formulaires/form_ajoutstage.scss";

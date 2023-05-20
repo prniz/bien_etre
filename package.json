@@ -23,7 +23,8 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "jquery-ui": "^1.13.2"
+        "jquery-ui": "^1.13.2",
+        "leaflet": "^1.9.3",
+        "select2": "^4.1.0-rc.0"
     }
- 
 }

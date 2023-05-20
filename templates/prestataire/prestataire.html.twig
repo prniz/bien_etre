@@ -1,0 +1,181 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <div class="main-container"> 
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-xl-6">
+                <div class="fiche-prestataire">
+                    <div class="profil-prestataire">
+                        <img src="{{ asset('/uploads/prestataires/'~ prestataire.image[0])  }}"/>
+                    </div>
+                    <div class="contact-prestataire">
+                        <ul>
+                            <li>{{prestataire.nom}}</li>
+                            <li id="adresse">{{ prestataire.utilisateur.adresseRue ~ " " ~ prestataire.utilisateur.adresseNum ~ ", " ~ codep.CodePostal ~ " " ~ commune.Commune}}</li>
+                            {# <li>{{localite.Localite}}</li> #}
+                            <li>{{prestataire.numTel}}</li>
+                            <li>{{prestataire.utilisateur.email}}</li>
+                            <li>{{prestataire.numTel}}</li>
+                            <li>{{prestataire.numTVA}}</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-6">
+
+                <div id="maCarte"></div>
+                </div>
+        </div>
+
+        
+
+        {# ligne catégorie de services #} 
+
+
+        <div class="bloc-categories">
+
+                <h1 class="titre-categories">CATEGORIES DE SERVICES</h1>  
+
+                {% for categorieDeServices in prestataire.categorieDeServices %}
+
+                    <div class="col-12 col-md-6 col-xl-6">
+
+                        <div class="bloc-categorie">
+
+                            <h2>{{categorieDeServices.nom}}</h2>
+                            <p>{{categorieDeServices.description}}</p>
+                      
+                            <a class="supprimer-categorie"href="{{ path('categorie_supprimer_ParPrestataire', {id: prestataire.id, idCateg:categorieDeServices.id}) }}">Supprimer</a>
+                        </div>
+
+                    </div>
+                    
+                {% endfor %}
+                
+        </div>
+
+        {# ligne stages #}
+
+        <div class="row">
+
+            {% if stages %}
+
+                <div class="col-12 col-md-9 col-xl-9">
+
+                    <div class="bloc-stages">
+
+                        <h1 class="titre-stages">STAGES</h1>  
+                                
+                            {% set dateDeCeJour = "now" | date("U") %}
+                                
+                            {% for stage in stages %}
+
+                                    <div class="col-12 col-md-4 col-xl-4">
+                                        <div class="bloc-stage">
+                                            <h2 class="titre-stage">{{stage.nom}}</h2>
+                                            <div class="contenu-stage">
+                                                <ul>
+                                                    <li>Date de début : le {{stage.debut| date("d/m/Y")}}</li> 
+                                                    <li>Date de fin : le {{stage.fin| date("d/m/Y")}}</li>
+                                                    <a href="{{ path('infoStage', {id: prestataire.id, idStage:stage.id}) }}">Plus d'infos</a>
+
+                                                    {# <li>Info supplémentaires : {{stage.infoComplementaire}}</li>  #}
+                                                    <li class="supprimer-stage"><a href="{{ path('suppressionStage', {id: prestataire.id, idStage:stage.id})}}">Supprimer</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                            {% endfor %}
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-3 col-xl-3">{{ render(controller('App\\Controller\\RechercheController::index')) }}</div>
+            
+            {% else %}
+
+                <div class="col-12 col-md-12 col-xl-12">{{ render(controller('App\\Controller\\RechercheController::index')) }}</div>
+
+            {% endif %}
+
+            <div class="ajout-stages">
+                <p>Voulez-vous ajouter un stage ?
+                <a href="{{ path('ajoutStage', {id: prestataire.id})}}">Lien</a>
+            </div>
+            
+
+            
+        </div>
+
+
+        {# ligne prestataires de la même catégorie #}
+
+        <div class="row">
+
+            {% if prestatairesIdem %}
+
+                <div class="bloc-prestataires-idem">
+                
+                        <h3 class="titre-prestataire-idem">Les prestataires ci-dessous pourraient vous intéresser ...</h3>
+
+                        {% for p in prestatairesIdem %}
+                        
+                            {# Afficher les prestataires de la même catégorie sauf le prestataire concerné - dont on visite la page #}
+
+                                <div class="col-12 col-md-3 col-xl-3">
+
+                                    <div class="b-prestataire-idem">
+
+                                        <li id="prestataire-image-idem"><img src="{{ asset('/uploads/prestataires/'~ p.image[0])  }}"/></li>
+
+                                        <div id="contenu-prestataire-idem">
+                                            <h2 id="prestataire-titre">{{p.nom}}</h2>
+                                            <li id="prestataire-description">{{p.description|slice(0,50)}}</li>
+                                            <li id="prestataire-lireSuite"><a href="{{ path('prestataireP', {id:p.id})}}">Lire la suite</a></li>
+                                        </div>
+
+                                    </div>  
+                                </div>
+                            
+                            
+                        {% endfor %}
+
+
+                    {# pagination ici #}
+
+                </div>
+
+            {% endif %}
+        
+        </div>
+
+        {# ligne des promotions #}
+
+     
+
+        <div class="row">
+            {% if images %}
+                <div class="bloc-images">
+
+                    {% for image in images %}
+                        <li id="prestataire-image"><img src="{{ asset('/uploads/prestataires/'~ image)  }}"/></li>
+                    {% endfor %}
+                </div>
+            
+            {% endif %}
+
+        </div>
+
+        {# ligne des commentaires #}
+
+    </div>
+
+    {% include 'footer.html.twig' %} 
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="section-B">
+        <div class="main-container">    
+            <p>Nous vous présentons les prestataires du mois ...</p>
+            
+            {% set compt_prestataires = 0 %}
+
+            {% for cle in prestataires_mois %}
+
+                {% if compt_prestataires < 4 %}
+                    <li id="prestataire"><a href="#">{{cle.nom}}</a></li>
+                {% else %}
+                    {% set compt_prestataires = 4 %}
+                {% endif %}
+
+                    {% set compt_prestataires = compt_prestataires + 1 %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -17,27 +17,36 @@ class RechercheType extends AbstractType
     {
         $builder
             ->add('nomPrestataire', TextType::class, [
-                'attr'=>['placeholder'=>'prestataire','class'=>'inputPrestataire',]
-            
+                'attr'=>['placeholder'=>'prestataire','class'=>'inputPrestataire'],
+                'required'=> false,
             ])
 
-            ->add('nomCategorie', EntityType::class, [
+            ->add('TitreCategorie', EntityType::class, [
+                'placeholder' => 'Votre choix',
                 'class'=>CategorieDeServices::class,
-                
-                // 'multiple' => true,
+                'required'=> false,
+                'multiple' => true,
+                'choice_label' => 'nom',
+                'attr' => ['class' => 'select-categorie']
             
             ])
 
             ->add('codepostal', TextType::class, [
-                'attr'=>['placeholder'=>'code postal','class'=>'cp',]
+                'attr'=>['placeholder'=>'code postal','class'=>'cp'],
+                'required'=> false,
+                
             ])
 
             ->add('commune', TextType::class, [
-                'attr'=>['placeholder'=>'commune','class'=>'commune',]
+                'attr'=>['placeholder'=>'commune','class'=>'commune'],
+                'required'=> false,
+            
             ])
 
             ->add('localite', TextType::class, [
-                'attr'=>['placeholder'=>'localité','class'=>'localite',]
+                'attr'=>['placeholder'=>'localité','class'=>'localite'],
+                'required'=> false,
+             
             ])
              ->add('Chercher', SubmitType::class)
         ;

@@ -1,0 +1,12 @@
+<h2>Tout ce que vous devez savoir sur le stage</h2>
+
+<ul>
+    <li>Intitulé : {{detailStage.nom}}</li>
+    <li>Description : {{detailStage.description}}</li>
+    <li>Date de début : {{detailStage.debut| date("d/m/Y")}}</li>
+    <li>Date de fin : {{detailStage.fin| date("d/m/Y")}}</li>
+    <li>Info complementaire : {{detailStage.infoComplementaire}}</li>
+    <li>Prix : {{detailStage.tarif}}</li>
+</ul>
+
+<a href="{{ path('prestataireP', {id: detailStage.prestataire.id})}}">Retour</a>

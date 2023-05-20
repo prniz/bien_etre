@@ -30,7 +30,7 @@ class Internaute
     private $prenom;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $newsletter;
 

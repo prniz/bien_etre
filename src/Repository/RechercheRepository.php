@@ -70,6 +70,12 @@ class RechercheRepository extends ServiceEntityRepository
         ;
     }
 
+    public function resultatPrestataires($value) : array
+    {
+
+        
+    }
+
 //    /**
 //     * @return Recherche[] Returns an array of Recherche objects
 //     */

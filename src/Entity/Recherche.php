@@ -22,14 +22,15 @@ class Recherche
      */
     private $nomPrestataire;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $nomCategorie;
 
     private $codepostal;
     private $commune;
     private $localite;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $TitreCategorie = [];
 
     public function getId(): ?int
     {
@@ -44,18 +45,6 @@ class Recherche
     public function setNomPrestataire(?string $nomPrestataire): self
     {
         $this->nomPrestataire = $nomPrestataire;
-
-        return $this;
-    }
-
-    public function getNomCategorie(): ?string
-    {
-        return $this->nomCategorie;
-    }
-
-    public function setNomCategorie(?string $nomCategorie): self
-    {
-        $this->nomCategorie = $nomCategorie;
 
         return $this;
     }
@@ -92,6 +81,18 @@ class Recherche
     public function setLocalite(?string $localite): self
     {
         $this->localite = $localite;
+
+        return $this;
+    }
+
+    public function getTitreCategorie(): ?array
+    {
+        return $this->TitreCategorie;
+    }
+
+    public function setTitreCategorie(array $TitreCategorie): self
+    {
+        $this->TitreCategorie = $TitreCategorie;
 
         return $this;
     }

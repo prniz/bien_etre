@@ -56,10 +56,10 @@ class CategorieDeServicesRepository extends ServiceEntityRepository
        ;
    }
 
-//    public function findOneBySomeField($value): ?CategorieDeServices
+//    public function findOneByName($value): ?CategorieDeServices
 //    {
 //        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
+//            ->andWhere('c.nom = :val')
 //            ->setParameter('val', $value)
 //            ->getQuery()
 //            ->getOneOrNullResult()

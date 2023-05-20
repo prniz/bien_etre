@@ -1,1 +1,24 @@
-<p>Quel type d'utilisateur êtes-vous ?</p>
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {# <div class="col-12 col-md-6 col-xl-6"> #}
+ 
+        <div class="type_utilisateur">
+
+            <h2>Quel type d'utilisateur êtes-vous ?</h2>
+
+            <div class="prestataire">
+                <a href="{{ path('app_verifier_role', {role:'prestataire'})}}">Prestataire</a>
+            </div>
+
+            <div class="internaute">
+                <a href="{{ path('app_verifier_role', {role:'internaute'})}}">Internaute</a>
+            </div>
+        </div>
+
+    {# </div #}
+
+
+{% endblock %}
+

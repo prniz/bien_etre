@@ -22,29 +22,33 @@ class RegistrationController extends AbstractController
 {
     
     private $mailer;
+    private $verifyEmailHelper;
 
-    public function __construct(MailerInterface $mailer){
+    public function __construct(MailerInterface $mailer, VerifyEmailHelperInterface $helper){
 
         $this->mailer = $mailer;
+        $this->verifyEmailHelper = $helper;
     }
 
     /**
      * @Route("/verifier", name="app_verify_email")
      */
-    public function verifierUserEmail(): Response
+    public function verifierUserEmail(Request $request, VerifyEmailHelperInterface $verifyEmailHelper, ManagerRegistry $doctrine): Response
     {
-        
-        // Au clic sur le lien, envoyer l'utilisateur vers une route pour recuperer le type d'utilisateur
+       
+        return $this->render('registration/typeUtilisateur.html.twig');
+       
     }
 
 
     /**
-     * @Route("/inscription", name="app_register")
+     * @Route("/pre_inscription", name="app_preRegister")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, VerifyEmailHelperInterface $verifyEmailHelper, MailerInterface $mailer, EntityManagerInterface $entityManager): Response
+    public function preRegister(Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = new Utilisateur();
-
+        $user->isInscriptConf();
+    
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -57,28 +61,32 @@ class RegistrationController extends AbstractController
                 )
             );
 
+
+
             // $entityManager->persist($user);
             // $entityManager->flush();
             // do anything else you need here, like send an email
 
 
-            $signatureComponents = $verifyEmailHelper->generateSignature(
+            $signatureComponents = $this->verifyEmailHelper->generateSignature(
 
                 'app_verify_email',
                 $user->getEmail(),
                 $user->getPassword(),
+
             );
+
+       
+            
             
             $email = new TemplatedEmail();
             $email->from('from@example.com');
-            $email->to('to@example.com');
+            $email->to($user->getEmail());
             $email->context(['signedUrl' => $signatureComponents->getSignedUrl()]);
             $email->htmlTemplate('registration/mail.html.twig');
            
             $this->mailer->send($email);
-
-    
-            // return $this->redirectToRoute('home');
+            
             $this->addFlash('success','mail envoyé avec succès');
         }
 
@@ -89,12 +97,23 @@ class RegistrationController extends AbstractController
 
     }
 
+    
     /**
-     * @Route("/type_ut", name="type_utilisateur")
+     * @Route("/verifier/{role}", name="app_verifier_role")
      */
-    public function recupererTypeUtilisateur(): Response
-    {
 
-        return $this->render('registration/typeUtilisateur.html.twig');
-    }
+     public function register($role, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
+     {
+        if($role === 'prestataire'){
+
+            return $this->redirectToRoute('app_preRegister_prestataire');
+
+        }else if($role == 'internaute'){
+            return $this->redirectToRoute('app_preRegister_internaute');
+        }
+     }
+
+
+
+    
 }

@@ -1,4 +1,6 @@
 
+// Version mobile 
+
 header{
 
     height: 90vh;   
@@ -17,41 +19,33 @@ header{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-    
-        .contenu-menu{
-            
-            position: absolute;
-            top: 100px;
-            right: 0;
-            display: flex;
-            justify-content: center; 
-            align-items: center;
 
-            ul{
-                display: none;
-                background-color: white;
-                opacity: 60%;
-                height: 80vh;
-                width: 150px;
+
+       
+    
+    .open{
+
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        background-color: white;
+        opacity: 60%;
+        height: 80vh;
+        width: 150px;
+        position: absolute;
+        right:0;
+        
+    
+        li{
+            padding: 20px 0 20px 0;
+
+        }
                  
-            }
-
-     
-            
-            ul li{
-
-                padding: 20px 0 20px 0;
-            }
+        
         }
 
-        #fermer-menu{
-            display: none;
-
-        }
-    
         .logo{
-            
-            left: 20px;
+            text-align: left;
             
             img{
                
@@ -63,34 +57,74 @@ header{
         .clic{
             position: absolute;
             top: 35px;
-            right: 70px;
-            
+            right: 70px;       
             i{
                 font-size: 30px;
             }
         }
 
-
     }
+
+    #contenu-menu{
+        display: none;
+    }
+
+ 
     .categories{
     
-        margin-top: 30em;
+        margin-top: 34em;
         height: 120px;
-        // padding-top: 3px;
-        
-        .plus{
-            
-            margin-left: 30px;
+
+        .liste-categories{
+
+            padding: 0;
+            text-align: left;
             a{
                 color: white;
                 text-decoration: none;
             }
-           
-            
         }
+        
+        .plus{
+            a{
+                color: rgba(62, 205, 102, 1);
+                text-decoration: none;
 
+            }
+        }
     }
    
+}
+
+// Version tablette & PC
+
+@media screen and (min-width: 768px){
+
+
+   .hamburger{
+        display: none;
+    }
+
+    #contenu-menu{
+        position: absolute;
+        right: 70px;
+        top: 0px;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 40% !important;
+        height: 100px !important;
+
+        li{
+
+            a:hover{
+                color: rgba(28, 32, 72, 1);
+            }
+        }
+       
+    }
+
 }
 
    

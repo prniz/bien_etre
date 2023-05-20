@@ -8,9 +8,13 @@
 
 require('jquery');
 
+
+
 import 'jquery-ui/ui/widget';
 import 'jquery-ui/ui/widgets/draggable';
 import 'jquery-ui/ui/widgets/autocomplete';
+import 'select2';
+import "leaflet";
 
 import './js/main.js';
 
@@ -22,7 +26,6 @@ import './bootstrap';
  // loads the jquery package from node_modules
 
  import './img/logo_bien-etre.jpg';
-
 
 
 
