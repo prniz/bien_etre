@@ -1,0 +1,42 @@
+
+{% block body %}
+    <header>
+       
+        <nav class="nav-menu">
+
+            <div class="main-container">
+
+                <div class="logo">
+                    <img src="{{ asset('build/images/logo_bien-etre.8f11f642.jpg') }}" alt="logo bien-être"/>
+                </div>
+
+                <div class="menu">
+
+                    <ul id="contenu-menu">
+                        <li><a href="#">A propos</a></li>
+                        <li><a href="{{ path('app_login')}}">Connexion</a></li>
+                        <li><a href="{{ path('app_verify_email')}}">Inscription</a></li>
+
+                        {% if app.user %}
+                            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        {% endif %}
+                    </ul>
+
+                  
+                </div>
+
+
+                <div class="hamburger">                             
+                    {# <a href="#" class="clic" id="fermer-menu"><i class="fas fa-times"></i></a> #}
+                    <a href="#" class="clic" id="ouvrir-menu"><i class="fa fa-bars"></i></a>
+                </div>
+
+                 {{ render(controller('App\\Controller\\CategorieController::index')) }}
+
+            </div>
+
+
+        </nav>
+        
+    </header>
+{% endblock %}

@@ -1,0 +1,15 @@
+ {% extends "base.html.twig" %}
+    
+    {% block body %}
+
+        <div class="main-container">
+            <div class="inscription">
+                <h1>Formulaire d'inscription Prestataire</h1>
+                {{form_start(form) }}
+                    {{ form_widget(form) }}
+                   
+                {{ form_end(form) }}      
+            </div>
+        </div>
+
+    {% endblock %}

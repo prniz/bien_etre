@@ -1,0 +1,7 @@
+.ajout-stage{
+    @extend .inscription;
+
+    button{
+        @extend #prestataire_Envoyer
+    }
+}

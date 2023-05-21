@@ -1,0 +1,43 @@
+
+<div class="main-container">
+
+    <div class="form">
+
+        <form id="form-recherche" action="{{ path('app_recherche')}}" method="POST">
+        
+                {{form_start(form) }}
+
+                    {{ form_widget(form.nomPrestataire) }}
+                    <label for="categorie">Selectionner votre catégorie</label>
+                    {{ form_widget(form.TitreCategorie, {'attr': {'id': 'categorie'} }) }}
+                    
+                
+                    <label for="cp">Votre code postal</label>
+                    {{ form_widget(form.codepostal) }}
+                
+
+                    <label for="commune">Votre commune</label>
+                    {{ form_widget(form.commune) }}
+
+                    <label for="localite">Votre localité</label>
+                    {{ form_widget(form.localite) }}
+
+
+                {{ form_widget(form.Chercher) }} 
+                {{ form_end(form) }} 
+            
+        </form> 
+
+    </div>
+
+</div>
+
+    
+  
+
+
+
+    
+
+
+

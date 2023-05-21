@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class=".mail">  
+        
+        <h1>Bienvenu</h1>
+
+        {% if utilisateur.roles[0] == "prestataire" %}
+            <a href="{{ url('app_Register_prestataire', {'id': id}) }}">Veuillez cliquer sur ce lien pour confirmer votre inscription</a> 
+        {% else %}
+            <a href="{{ url('app_Register_internaute', {'id': id}) }}">Veuillez cliquer sur ce lien pour confirmer votre inscription</a>
+        {% endif %}
+    </div>
+{% endblock %}

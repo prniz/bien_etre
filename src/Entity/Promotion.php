@@ -53,11 +53,6 @@ class Promotion
      */
     private $prestataire;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=CategorieDeServices::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $categorieDeService;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -153,17 +148,6 @@ class Promotion
         return $this;
     }
 
-    public function getCategorieDeService(): ?CategorieDeServices
-    {
-        return $this->categorieDeService;
-    }
-
-    public function setCategorieDeService(?CategorieDeServices $categorieDeService): self
-    {
-        $this->categorieDeService = $categorieDeService;
-
-        return $this;
-    }
 
     public function getdocumentPDF(): ?string
     {

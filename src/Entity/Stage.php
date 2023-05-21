@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StageRepository::class)
@@ -19,6 +20,7 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $nom;
 
@@ -59,7 +61,7 @@ class Stage
 
     /**
      * @ORM\ManyToOne(targetEntity=Prestataire::class, inversedBy="stages")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $prestataire;
 

@@ -1,0 +1,15 @@
+footer{
+    background-color: #04091e;
+    color: white;
+    padding: 5% 0 5% 0;
+    text-align: center;
+
+    .annuaire,.a-propos,.media{
+        display: flex;
+        align-items: center;
+        height: 100px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+

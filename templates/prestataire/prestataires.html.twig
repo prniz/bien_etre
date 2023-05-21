@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="section-D">
+    <div class="main-container"> 
+
+        <h1 id="titre">Résultat de votre recherche</h1>
+
+            <div class="bloc-prestataires">
+
+                {% if prestataires is null %}
+                    <p>Pas de prestataire selon vos critères</p>
+                {% else %}
+
+
+                    {% for p in prestataires %}
+
+                            <div class="col-12 col-md-3 col-xl-3">
+
+                                <div class="b-prestataire">
+
+                                    <li id="prestataire-image"><img src="{{ asset('/uploads/prestataires/'~ p.image[0])  }}"/></li>
+
+                                    <div id="contenu-prestataire">
+                                        <h2 id="prestataire-titre">{{p.nom}}</h2>
+                                        <li id="prestataire-description">{{p.description|slice(0,50)}}</li>
+                                        <li id="prestataire-lireSuite"><a href="{{ path('prestataireP', {id:p.id})}}">Lire la suite</a></li>
+                                    </div>
+
+                                </div>  
+                            </div>
+                        
+                        
+                    {% endfor %}
+                        
+                {% endif %}
+            </div>
+
+        <div class="pages">
+            {{ knp_pagination_render(prestataires) }}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

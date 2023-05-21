@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+ 
+    {% include 'header.html.twig' %}
+
+        {{ render(controller('App\\Controller\\HomeController::categorieMisEnAvant')) }} 
+            
+        {{ render(controller('App\\Controller\\HomeController::prestatairesMois')) }} 
+
+        {{ render(controller('App\\Controller\\RechercheController::index')) }} 
+
+    {% include 'footer.html.twig' %}
+
+{% endblock %}
+
+   
+
+
+

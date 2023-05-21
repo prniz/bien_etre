@@ -1,0 +1,28 @@
+     <div class="categories">
+
+            {% if categories %}
+
+                {% set compt_categories = 0 %}
+
+                <h4 class="titre-categories">Catégories</h4>
+
+                <ul class="liste-categories">
+                    {% for categ in categories %}
+
+                        {% if compt_categories < 4 %}
+                            <li id="cat"><a href="#">{{categ.nom}}</a></li>
+                        {% else %}
+                            {% set compt_categories = 4 %}
+                        {% endif %}
+
+                            {% set compt_categories = compt_categories + 1 %}
+                    {% endfor %}
+
+                </ul>
+
+                <div class="plus">
+                    <a href="{{ path('plusDeCateg', {param:'plus'})}}" id="plusCategories">plus</a>   
+                </div>
+
+            {% endif %}
+        </div>

@@ -18,7 +18,7 @@ class Images
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $ordre;
 
@@ -28,7 +28,7 @@ class Images
     private $nomImage;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Prestataire::class, inversedBy="image")
+     * @ORM\ManyToOne(targetEntity=Prestataire::class, inversedBy="images")
      */
     private $prestataire;
 
@@ -75,6 +75,9 @@ class Images
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return $this->getNomImage();
+    }
 
 }

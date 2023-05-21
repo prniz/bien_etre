@@ -1,0 +1,20 @@
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="main-container">
+
+        <div class="categorie-mois">
+
+        {% if categorieMois %}
+
+            <p>Votre categorie du mois est : <strong>{{categorieMois.nom}}</strong></p>
+
+        {% else %}
+
+            <p>Votre categorie du mois est : <strong>A determiner</strong></p>
+
+        {% endif %}
+    </div>
+    </div>
+{% endblock %}

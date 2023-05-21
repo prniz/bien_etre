@@ -1,0 +1,27 @@
+.inscription{
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 0 0;
+
+    h1{
+        text-align: left;
+        margin: 0 0 30px 0;
+        width: 320px;
+    }
+
+    form{
+        box-sizing: border-box;
+        width: 320px;
+
+        #prestataire_Envoyer{
+            width: 100%;
+            background-color: rgba(62, 205, 102, 1);
+            border: transparent;
+            margin: 10px 0 0 0;
+            font-size: 15px;
+        }
+    }
+}
