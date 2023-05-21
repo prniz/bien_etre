@@ -8,18 +8,18 @@
                 {{form_start(form) }}
 
                     {{ form_widget(form.nomPrestataire) }}
-                    <label for="categorie">Selectionner votre catégorie</label>
+                    <label id="label-recherche" for="categorie">Selectionner votre catégorie</label>
                     {{ form_widget(form.TitreCategorie, {'attr': {'id': 'categorie'} }) }}
                     
                 
-                    <label for="cp">Votre code postal</label>
+                    <label id="label-recherche" for="cp">Votre code postal</label>
                     {{ form_widget(form.codepostal) }}
                 
 
-                    <label for="commune">Votre commune</label>
+                    <label id="label-recherche" for="commune">Votre commune</label>
                     {{ form_widget(form.commune) }}
 
-                    <label for="localite">Votre localité</label>
+                    <label id="label-recherche" for="localite">Votre localité</label>
                     {{ form_widget(form.localite) }}
 
 

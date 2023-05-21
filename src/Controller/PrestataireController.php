@@ -29,6 +29,7 @@ use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
 
@@ -274,6 +275,7 @@ class PrestataireController extends AbstractController
 
      /**
      * @Route("/prestataires/{id}", name="prestataireP")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
 
      public function prestataire($id, Request $request, ManagerRegistry $doctrine): Response
