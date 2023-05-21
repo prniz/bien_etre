@@ -1,10 +1,12 @@
-.section-A{
+.categorie-mois{
     height: 72px;
     display: flex;
     justify-content: center;
+    align-items: center;
     p{
         text-align: center;
         margin: 0;
+        font-size: 1.2em;
     }
 }
 

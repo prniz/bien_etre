@@ -72,8 +72,13 @@ header{
  
     .categories{
     
-        margin-top: 34em;
-        height: 120px;
+        margin-top: 30em;
+        height: 200px;
+        width: 50%;
+        .titre-categories{
+            color: white;
+            margin-bottom: 1em;
+        }
 
         .liste-categories{
 

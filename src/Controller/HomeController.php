@@ -44,9 +44,17 @@ class HomeController extends AbstractController
         ]);
      }
 
+    /**
+     * @Route("/categorieDumois", name="categorie_mois")
+     */
+
+     public function categorieMisEnAvant(ManagerRegistry $doctrine): Response
+     {
    
-
-
-  
-    
+        $categorie_mois = $doctrine->getRepository(CategorieDeServices::class)->CategorieDuMois(true);
+         
+        return $this->render('home/categorie_mois.html.twig', [
+            'categorieMois' => $categorie_mois,
+        ]);
+     }
 }

@@ -53,9 +53,6 @@ class CategorieController extends AbstractController
 
  
     }
+ 
 
-      
-   
-
-     // Methode pour récupérer la catégorie du mois
 }
